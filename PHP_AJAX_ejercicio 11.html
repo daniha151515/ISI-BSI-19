@@ -1,0 +1,91 @@
+
+<html>
+<head>
+<title> PRACTICA 11 </title>
+</head>
+<script type="text/javascript">
+function ajaxObj( meth , url )
+{
+var x = new XMLHttpRequest();
+x.open(meth , url , true);
+x.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
+return x;
+}
+function ajaxReturn(x)
+{
+if(x.readyState == 4 && x.status == 200)
+{
+return true;
+}
+}
+function ajax_post(){
+var ajax = ajaxObj("POST","calculadora.php");
+var num1 = document.getElementById("numero1").value;
+var num2 = document.getElementById("numero2").value;
+var oper = document.getElementById("operacion").value;
+var datastring = "n1="+num1+"&n2="+num2+"&op="+encodeURIComponent(oper);
+ajax.onreadystatechange = function()
+{
+if(ajaxReturn(ajax) == true)
+{
+document.getElementById("resultado").innerHTML ="Valor = " + ajax.responseText;
+}
+}
+ajax.send(datastring);
+document.getElementById("resultado").innerHTML = "Calculando...";
+}
+</script>
+<body>
+<div class="calculadora">
+Numero_1:<input type="number" class="form-control" name="numero1" id="numero1"/><br/>
+Numero_2:<input type="number" class="form-control" name="numero2" id="numero2"/><br/>
+Oeracion:<select id="operacion">
+<option>Suma</option>
+<option>Resta</option>
+<option>Multiplicacion</option>
+<option>Division</option>
+</select><br/><br/>
+<div id="resultado" ></div><br/>
+<input type="submit" value="Calcular" class="form-control btn btn-primary" onClick="javascript:ajax_post();">
+</div>
+</body>
+</html>
+
+
+
+
+<?php
+ $n1 = $_POST['n1'];
+ $n2 = $_POST['n2'];
+ $op = $_POST['op'];
+ switch($op)
+ {
+ case '+':
+ $output = $n1 + $n2;
+ echo $output;
+ break;
+ case '-':
+ $output = $n1 - $n2;
+ echo $output;
+ break;
+ case '*':
+ $output = $n1 * $n2;
+ echo $output;
+ break;
+ case '/':
+ $output = $n1 / $n2;
+ echo $output;
+ break;
+ default:
+ echo $output = "Enteros o Decimales";
+ }
+?>
+
+
+
+
+
+
+
+
+
