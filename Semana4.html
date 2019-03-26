@@ -1,0 +1,61 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+<title>Semana4</title>
+</head>
+<script>
+function validacion(){
+var user = document.forms["semana4"]["user"].value;
+var userEx = new RegExp("^([A-Za-z]+)\.([A-Za-z]+)$");
+if(!user){
+alert("[ERROR]Nombre de usuario requerido");
+return false;
+}
+else if (!userEx.test(user)){
+alert("[ERROR]Nombre de usuario incorrecto");
+return false;
+}
+var pswd = document.forms["semana4"]["pswd"].value;
+var pswdEx = new RegExp("^(?=.*[a-z])(?=.*[A-Z])(?=.*[!@#\$%\^&\*])(?=.{8,})");
+if(!pswd){
+alert("[ERROR]Contraseña requerida");
+return false;
+}
+else if (!pswdEx.test(pswd)){
+alert("[ERROR]Contraseña incorrecta");
+return false;
+}
+var email = document.forms["semana4"]["email"].value;
+var emailEx = new RegExp("^[a-zA-Z0-9.!#$%&’*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$");
+if(!email){
+alert("[ERROR]E-mail requerido");
+return false;
+}
+else if(!emailEx.test(email)){
+alert("[ERROR]E-mail incorrecto");
+return false;
+}
+var bday = document.forms["semana4"]["bday"].value;
+if(!bday){
+alert("[ERROR]Fecha de nacimiento requerida");
+return false;
+}
+var sneaky = document.forms["semana4"]["sneaky"].value;
+if(sneaky){
+alert("[ERROR]Campo oculto fue modificado");
+return false;
+}
+return true;
+}
+</script>
+<body>
+<form action="semana4.php" id="semana4" name="semana4" onsubmit="return validacion()" method="post">
+Nombre de usuario: <input type="text" name="user" id="user"><br>
+Contraseña: <input type name="pswd" id="pswd"><br>
+E-mail: <input type="password" name="email" id="email"><br>
+Fecha de nacimiento: <input type="date" name="bday" id="bday"><br>
+<input type="hidden" id="sneaky" name="sneaky" value="">
+<input type="submit">
+</form>
+</body>
+</html>
