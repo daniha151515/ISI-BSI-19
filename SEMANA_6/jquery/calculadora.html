@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>Tarea Semana 6</title>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+</head>
+<script>
+$(document).ready(function(){
+    $("button").click(function(){
+        $.post("calculadora.php",
+        {
+            n1: document.getElementById("n1").value,
+            n2: document.getElementById("n2").value,
+            op: document.getElementById("op").value
+        },
+        function(data, status){
+            $('#resultado').html(data);
+            alert("Estado: " + status);
+        });
+    });
+});
+</script>
+<body>
+Numero1:<input type="number" min="1" name="n1" id="n1"/><br/>
+Numero2:<input type="number" min="1" name="n2" id="n2"/><br/>
+Operacion:<select id="op" name="op" form="calculadora">
+<option value="suma">+</option>
+<option value="resta">-</option>
+<option value="multiplicacion">*</option>
+<option value="division">/</option>
+</select><br/><br/>
+<div id="resultado"></div>
+<br/><button>Calcular</button>
+</body>
+</html>

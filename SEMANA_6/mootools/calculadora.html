@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>Tarea Semana 6</title>
+<script src="MooTools-Core-1.6.0.js" type="text/javascript"></script>
+</head>
+<script>
+window.addEvent('domready', function(){
+    $('calcular').addEvent('click', function(event) {
+        event.stop();
+        var n1 = document.getElementById("n1").value;
+        var n2 = document.getElementById("n2").value;
+        var op = document.getElementById("op").value;
+		var req = new Request.HTML({
+            method: 'get',
+			url: 'calculadora.php',
+			data: {n1: n1, n2: n2, op: op},
+			onRequest: function() { alert('Calculando...'); },
+			update: $('resultado'),
+			onComplete: function(response) { alert('Hecho!'); $('resultado').setStyle('background','#fffea1');
+			}
+		}).send();
+	});
+});
+</script>
+<body>
+Numero1:<input type="number" min="1" name="n1" id="n1"/><br/>
+Numero2:<input type="number" min="1" name="n2" id="n2"/><br/>
+Operacion:<select id="op" name="op" form="calculadora">
+<option value="suma">+</option>
+<option value="resta">-</option>
+<option value="multiplicacion">*</option>
+<option value="division">/</option>
+</select><br/><br/>
+<div id="resultado"></div>
+<br/><input type="submit" id="calcular" value="Calcular">
+</body>
+</html>
