@@ -1,0 +1,37 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Mantenimiento Salonero{% endblock %}
+
+{% block body %}
+    <h1>Saloneros</h1>
+
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Id</th>
+                <th>Nombre</th>
+                <th>LimiteMesas</th>
+                <th>acciones</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for salonero in saloneros %}
+            <tr>
+                <td>{{ salonero.id }}</td>
+                <td>{{ salonero.nombre }}</td>
+                <td>{{ salonero.limiteMesas }}</td>
+                <td>
+                    <a href="{{ path('salonero_show', {'id': salonero.id}) }}">mostrar</a>
+                    <a href="{{ path('salonero_edit', {'id': salonero.id}) }}">editar</a>
+                </td>
+            </tr>
+        {% else %}
+            <tr>
+                <td colspan="4">no se encontraron registros</td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+    <a href="{{ path('salonero_new') }}">Crear nuevo</a>
+{% endblock %}

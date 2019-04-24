@@ -1,0 +1,31 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Salonero{% endblock %}
+
+{% block body %}
+    <h1>Salonero</h1>
+
+    <table class="table">
+        <tbody>
+            <tr>
+                <th>Id</th>
+                <td>{{ salonero.id }}</td>
+            </tr>
+            <tr>
+                <th>Nombre</th>
+                <td>{{ salonero.nombre }}</td>
+            </tr>
+            <tr>
+                <th>LimiteMesas</th>
+                <td>{{ salonero.limiteMesas }}</td>
+            </tr>
+        </tbody>
+    </table>
+
+    
+    <a href="{{ path('salonero_index') }}">volver a la lista</a>
+
+    <a href="{{ path('salonero_edit', {'id': salonero.id}) }}">editar</a>
+
+    {{ include('salonero/_delete_form.html.twig') }}
+{% endblock %}
